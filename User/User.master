@@ -1,0 +1,164 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="User.master.cs" Inherits="User_User" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link rel="stylesheet" type="text/css" href="../Asset/css/bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+    <script type="text/javascript" src="../Asset/css/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 60px;
+        }
+
+        /* Smooth Navbar */
+        .navbar {
+            background: rgba(52, 58, 64, 0.9);
+            transition: 0.4s ease-in-out;
+        }
+
+        .navbar.scrolled {
+            background: rgba(52, 58, 64, 1);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 22px;
+            font-weight: bold;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-size: 16px;
+            padding: 8px 12px;
+            transition: 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: #007bff;
+            border-radius: 5px;
+        }
+
+        /* Profile Dropdown */
+        .dropdown-menu {
+            background: #343a40;
+        }
+
+        .dropdown-menu a {
+            color: white !important;
+        }
+
+        .dropdown-menu a:hover {
+            background: #007bff;
+        }
+
+        /* Logout Button */
+        .logout-btn {
+            background-color: #dc3545;
+            color: white;
+            border-radius: 5px;
+            transition: 0.3s;
+            padding: 6px 12px;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+
+        /* Content Area */
+        .content {
+            padding: 20px;
+        }
+
+        /* Smooth Footer */
+        .footer {
+            background: #343a40;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive Fix */
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 18px;
+            }
+            .nav-link {
+                font-size: 14px;
+            }
+        }
+    </style>
+    <script>
+        // Smooth Navbar Scroll Effect
+        window.addEventListener("scroll", function () {
+            var navbar = document.querySelector(".navbar");
+            navbar.classList.toggle("scrolled", window.scrollY > 50);
+        });
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="Home.aspx">🚗 Car Parking</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Home.aspx">🏠 Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="CheckAvailability.aspx">🅿️ Check Availability</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="BookingHistory.aspx">📅 Booking History</a>
+                        </li>
+
+                        <!-- Profile Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                👤 <asp:Label ID="lblUsername" runat="server" CssClass="username" Visible="false"></asp:Label>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                <li><a class="dropdown-item" href="Profile.aspx">🔧 Edit Profile</a></li>
+                                <li><asp:LinkButton ID="btnLogout" runat="server" CssClass="dropdown-item logout-btn" OnClick="btnLogout_Click" Visible="false">🚪 Logout</asp:LinkButton></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <asp:LinkButton ID="btnLogin" runat="server" CssClass="nav-link" OnClick="btnLogin_Click">🔑 Login</asp:LinkButton>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+        </div>
+
+        <!-- Smooth Footer -->
+        <div class="footer">
+            <p>© 2025 Car Parking Management System | Built for convenience 🚗</p>
+        </div>
+
+    </form>
+
+</body>
+</html>
